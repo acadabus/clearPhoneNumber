@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Глобальные стили</title>
+    <style>
+
+        body {
+            margin: 0;
+            background-color: #E5E5E5;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        h2, p {
+            font-size: 2rem;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .inputPhone {
+            font-size: 1.7rem;
+            width: 50%;
+            height: 4rem;
+            padding: 1rem;
+            background-color: #F1F1F1;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            padding: 20%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Очищение телефонных номеров</h1>
+    <input class="inputPhone" id="inp" type="text" placeholder="Введите номер телефона"/>
+    <br/><br/><br/>
+    <h2>Результат:</h2>
+    <p id="result">&nbsp;</p>
+</div>
+</body>
+<script>
+    var input = document.getElementById('inp');
+
+    input.oninput = function () {
+        var text = input.value.replace(' ', '').replace('+7', '8').replace(/[^\d]/g, '');
+        if (text.length) {
+            if (text[0] === '7')
+                text[0] = '8';
+            if (text[0] !== '8')
+                text = '8' + text;
+            document.getElementById('result').innerHTML = text;
+        }
+        else {
+            document.getElementById('result').innerHTML = "&nbsp;";
+        }
+    };
+</script>
+</html>
